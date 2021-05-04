@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      .colorText {
+         word-wrap: break-word;
+         color: none;
+      }
+    </style>
+</head>
+<body>
+    <div id="first">Lorem ipsum dolor</div>
+    <div id="second">sit amet, consectetur adipisicing</div>
+    <div id="third">debitis ve</div>
+    <button id="btn">Обрезать</button>
+    
+    <p class="colorText">Дан абзац. Дан массив цветов ['red', 'green', 'blue']. Сделайте так, чтобы каждую секунду абзац менял свой цвет на определенное значение их массива: сначала 'red', потом 'green' и так далее. Как только цвета в массиве закончатся - все начнется сначала. Количество цветов в массиве может быть любым. </p>
+ 
+<script>
+  let firstDiv = document.querySelector("#first").textContent;
+  let secondDiv = document.querySelector("#second").textContent;
+  let thirdDiv = document.querySelector("#third").textContent;
+  let btn = document.querySelector("#btn");
+
+  btn.addEventListener('click', () => {
+    document.querySelector("#first").textContent = cutTheString(firstDiv);
+    document.querySelector("#second").textContent = cutTheString(secondDiv);
+    document.querySelector("#third").textContent = cutTheString(thirdDiv);
+
+  });
+
+ function cutTheString(phrase) {
+   i = 0;
+   arr = []
+  for (let symbol of phrase) {
+	i++;
+    if(i <= 10) {
+        arr.push(symbol);
+    }
+  }
+  return arr.join("") + '...';
+ }
+
+
+
+
+let colorText = document.querySelector('.colorText');
+let colorArr = ['red', 'green', 'blue'];
+
+
+var i = 0, howManyTimes = colorArr.length;
+function colorGhange() {
+    colorText.style.backgroundColor = colorArr[i];
+    i++;
+    if(i < howManyTimes){
+        setTimeout(colorGhange, 1000);
+    }
+}
+colorGhange();
+
+setInterval(function() {
+var i = 0, howManyTimes = colorArr.length;
+function colorGhange() {
+    colorText.style.backgroundColor = colorArr[i];
+    i++;
+    if(i < howManyTimes){
+        setTimeout(colorGhange, 1000);
+    }
+}
+colorGhange();
+}, 1000*colorArr.length);
+
+
+</script>
+</body>
+</html>
